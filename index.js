@@ -11,6 +11,8 @@ const taskController = require('./controllers/taskController')
 
 const app = express()
 
+const port = process.env.PORT || 3000;
+
 app.use(bodyParser.json())
 
 //distinguer path
@@ -24,7 +26,7 @@ app.get('/', (req, res) => {
 
 
 //fonction qui crée un serveur
-app.listen(3000, () => {
+app.listen(port, () => {
     console.log("server started")
 })
 
