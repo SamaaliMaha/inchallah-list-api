@@ -1,6 +1,5 @@
 //importer methode de la classe express (creation d'un objet)
 const express = require('express')
-const bodyParser = require('body-parser')
 const cors = require('cors')
 //import db mongoose
 const mongoose = require('./db/config')
@@ -8,16 +7,19 @@ const mongoose = require('./db/config')
 //declare user and task controllers (import)
 const userController = require('./controllers/userController')
 const taskController = require('./controllers/taskController')
+const parcelleController = require('./controllers/parcelleController')
 
 const app = express()
 
 const port = process.env.PORT || 3000;
 
-app.use(bodyParser.json())
+app.use(cors())
+app.use(express.json())
 
 //distinguer path
 app.use('/user', userController)
 app.use('/task', taskController)
+app.use('/parcelle', parcelleController)
 
 
 app.get('/', (req, res) => {
