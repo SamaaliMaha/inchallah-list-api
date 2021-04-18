@@ -13,7 +13,7 @@ app.post('/', async (req, res) => {
         //decrypt token and take only userid from it
         let ownerid = jwt.verify(token, "SECRETKEY").userid
 
-        let task = new Parcelle({
+        let parcelle = new Parcelle({
             description: data.description,
             adresse:data.adresse,
             NaturedeProduction: data.NaturedeProduction,
@@ -34,6 +34,7 @@ app.post('/', async (req, res) => {
         res.status(201).send({ msg: "parcelle added" })
     }
     catch (error) {
+
         res.status(400).send({ msg: "error" })
     }
 })

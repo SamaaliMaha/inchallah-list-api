@@ -15,9 +15,14 @@ app.post('/register', async (req, res) => {
 
         let user = new User({
             name: data.name,
-            age: data.age,
+            LastName: data.LastName,
             email: data.email,
-            password: data.password
+            password: data.password,
+            CINNumber: data.CINNumber,
+            PhoneNumber:data.PhoneNumber,
+            email: data.email,
+            password: data.password,
+            ConfirmPassword:data.ConfirmPassword
         })
 
         await user.save()
