@@ -1,7 +1,7 @@
 const express = require('express')
 const jwt = require('jsonwebtoken')
 
-const Task = require('./../models/parcelle')
+const Parcelle = require('./../models/parcelle')
 
 const app = express()
 
@@ -14,8 +14,8 @@ app.post('/', async (req, res) => {
         let ownerid = jwt.verify(token, "SECRETKEY").userid
 
         let parcelle = new Parcelle({
-            description: data.description,
-            adresse:data.adresse,
+            //description: data.description,
+            adresse: data.adresse,
             NaturedeProduction: data.NaturedeProduction,
             RendementAttendu: data.RendementAttendu,
             PrixdeVente: data.PrixdeVente,
@@ -34,10 +34,10 @@ app.post('/', async (req, res) => {
         res.status(201).send({ msg: "parcelle added" })
     }
     catch (error) {
-
-        res.status(400).send({ msg: "error" })
+        res.status(400).send({ msg: "error", error })
     }
 })
+
 app.get('/', async (req, res) => {
     try {
         let token = req.get('Authorization').substring(7)
@@ -48,7 +48,8 @@ app.get('/', async (req, res) => {
         res.status(200).send(parcelles)
     }
     catch (error) {
-        res.status(400).send({ msg: "error" })
+        res.status(400).send({ msg: "error", error })
     }
 })
+
 module.exports = app

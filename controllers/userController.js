@@ -17,10 +17,8 @@ app.post('/register', async (req, res) => {
             name: data.name,
             LastName: data.LastName,
             email: data.email,
-            password: data.password,
             CINNumber: data.CINNumber,
             PhoneNumber:data.PhoneNumber,
-            email: data.email,
             password: data.password,
             ConfirmPassword:data.ConfirmPassword
         })
