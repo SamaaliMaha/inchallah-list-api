@@ -13,23 +13,24 @@ app.post('/', async (req, res) => {
         //decrypt token and take only userid from it
         let ownerid = jwt.verify(token, "SECRETKEY").userid
 
-        let parcelle = new Parcelle({
-            //description: data.description,
-            adresse: data.adresse,
-            NaturedeProduction: data.NaturedeProduction,
-            RendementAttendu: data.RendementAttendu,
-            PrixdeVente: data.PrixdeVente,
-            RisquesPossibles: data.RisquesPossibles,
-            NaturedeStock: data.NaturedeStock,
-            Qtte: data.Qtte,
-            Prix: data.Prix,
-            ValeurduBatiment: data.ValeurduBatiment,
-            ValeurdeProduit: data.ValeurdeProduit,
-            Commentaire: data.Commentaire,
-            owner: ownerid
-        })
+          let parcelle = new Parcelle({
+              //description: data.description,
+              adresse: data.adresse,
+              NaturedeProduction: data.NaturedeProduction,
+              RendementAttendu: data.RendementAttendu,
+              PrixdeVente: data.PrixdeVente,
+              RisquesPossibles: data.RisquesPossibles,
+              NaturedeStock: data.NaturedeStock,
+              Qtte: data.Qtte,
+              Prix: data.Prix,
+              ValeurduBatiment: data.ValeurduBatiment,
+              ValeurdeProduit: data.ValeurdeProduit,
+              Commentaire: data.Commentaire,
+              Location: data.Location,
+              owner: ownerid
+          })
 
-        await parcelle.save()
+         await parcelle.save()
 
         res.status(201).send({ msg: "parcelle added" })
     }
