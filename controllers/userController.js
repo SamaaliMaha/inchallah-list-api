@@ -63,6 +63,19 @@ app.post('/login', async (req, res) => {
         res.status(400).send(error)
     }
 })
+app.get('/:id', async (req, res) => {
+    try {
+        let token = req.get('Authorization').substring(7)
+        let ownerid = jwt.verify(token, "SECRETKEY").userid
+
+        let user = await User.findOne({  _id: req.params.id })
+
+        res.status(200).send(user)
+    }
+    catch (error) {
+        res.status(400).send({ msg: "error" })
+    }
+})
 
 app.post('/ForgetPwd', async (req, res) => {
     try {
