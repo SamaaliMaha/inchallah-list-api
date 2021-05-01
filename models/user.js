@@ -8,7 +8,7 @@ let User = mongoose.model("users", {
     CINNumber: { type: String, required: true, unique: true },
     PhoneNumber: { type: String, required: true, unique: true },
     password: { type: String, required: true },
-    ConfirmPassword: { type: String, required: true },
+    Codexpert:{ type: String, required: false,unique: true}
 })
 
 module.exports = User

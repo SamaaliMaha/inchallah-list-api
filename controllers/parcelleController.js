@@ -53,4 +53,18 @@ app.get('/', async (req, res) => {
     }
 })
 
+app.delete('/:id', async (req, res) => {
+    try {
+        let token = req.get('Authorization').substring(7)
+        let ownerid = jwt.verify(token, "SECRETKEY").userid
+
+        await Parcelle.findOneAndDelete({ _id: req.params.id })
+
+        res.status(200).send({ msg: "parcelle deleted" })
+    }
+    catch (error) {
+        res.status(400).send({ msg: "error" })
+    }
+})
+
 module.exports = app
