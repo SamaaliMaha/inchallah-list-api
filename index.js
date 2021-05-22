@@ -1,5 +1,7 @@
 //importer methode de la classe express (creation d'un objet)
 const express = require('express')
+const multer=require('multer')
+const path= require('path')
 const cors = require('cors')
 //import db mongoose
 const mongoose = require('./db/config')
@@ -8,6 +10,8 @@ const mongoose = require('./db/config')
 const userController = require('./controllers/userController')
 const taskController = require('./controllers/taskController')
 const parcelleController = require('./controllers/parcelleController')
+const sinistreController = require('./controllers/sinistreController')
+const fileController = require('./controllers/fileController')
 
 const app = express()
 
@@ -15,17 +19,18 @@ const port = process.env.PORT || 3000;
 
 app.use(cors())
 app.use(express.json())
+app.use('/uploads', express.static(__dirname + '/uploads'));
 
 //distinguer path
 app.use('/user', userController)
 app.use('/task', taskController)
 app.use('/parcelle', parcelleController)
-
+app.use('/sinistre', sinistreController)
+app.use('/file', fileController)
 
 app.get('/', (req, res) => {
     res.status(200).send("Welcome to server")
 })
-
 
 //fonction qui crée un serveur
 app.listen(port, () => {
